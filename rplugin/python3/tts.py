@@ -43,9 +43,7 @@ class Text2SpeechPlugin(object):
         # self.nvim.out_write(f"text: {text}\n")
 
         translator = Translator(to_lang=lang)
-        translated = []
-        for line in text:
-            translated.append(translator.translate(line))
+        translated = [translator.translate(line) for line in text]
         return "\n".join(translated)
 
     @pynvim.command("Translator", nargs="*", range="", sync=True)
